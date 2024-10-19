@@ -1,9 +1,32 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import Movies from "../components/ui/Movies";
+import axios from "axios";
 
-const MovieInfo = ({ movie }) => {
+const MovieInfo = () => {
+    const [movie, setMovie] = useState([]);
+
+    // Get id of the current page.
+    const { id } = useParams();
+
+    // Import the movie information from the database.
+    async function fetchMoviesById() {
+        const dataset = (
+            await axios.get(`http://www.omdbapi.com/?apikey=5a06fc1&i=${id}`)
+        );
+
+        setMovie(dataset.data.Search);
+        // console.log(dataset)
+    }
+
+    useEffect(() => {
+        fetchMoviesById()
+    }, [])
+
+    console.log(movie)
+
     return (
         <div id="movieinfo__body">
             <main id="movieinfo__main">
@@ -21,9 +44,9 @@ const MovieInfo = ({ movie }) => {
                         <div className="movieinfo__selected">
 
                             {/* Poster of the movie. */}
-                            <figure className="movieinfo__selected--figure">
+                            {/* <figure className="movieinfo__selected--figure">
                                 <img src={movie.Poster} alt="" className="movieinfo__selected--img" />
-                            </figure>
+                            </figure> */}
                             
                             <div className="movieinfo__selected--description">
                                 

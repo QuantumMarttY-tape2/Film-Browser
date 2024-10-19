@@ -32,7 +32,7 @@ const Movieformat = ({ movie }) => {
                 />
             </figure>
             <div className="movie__title">
-                <Link to={`/catalog/${movie.imdbID}`} className='movie__title--link' movie={movie}>
+                <Link to={`/catalog/${movie.imdbID}`} className='movie__title--link'>
                     {movie.Title}
                 </Link>
             </div>
