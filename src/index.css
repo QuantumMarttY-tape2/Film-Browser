@@ -545,7 +545,6 @@ Watchlist
 
 .watchlist__header {
   background-color: #80a0ff;
-  margin: 0 24px;
   padding: 8px 16px;
   color: white;
   display: flex;
@@ -589,7 +588,7 @@ Watchlist
 .watchlist__body {
   display: flex;
   align-items: center;
-
+  flex-direction: column;
 }
 
 .watchlist__poster--img {
@@ -604,11 +603,12 @@ Watchlist
   flex-direction: column;
   justify-content: center;
   padding: 8px 16px;
+  left: 60px;
 }
 
 .watchlist__poster--title {
   font-size: 20px;
-  margin-bottom: 16px;
+  margin: 0 0 16px 48px;
 }
 
 .cart__book--price {
