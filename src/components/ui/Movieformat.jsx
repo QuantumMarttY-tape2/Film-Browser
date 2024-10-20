@@ -27,7 +27,7 @@ const Movieformat = ({ movie }) => {
             <figure className="movie__img--wrapper">
                 <img
                     src={movie.Poster}
-                    alt=""
+                    alt="Poster not Avaliable"
                     className="movie__img"
                 />
             </figure>

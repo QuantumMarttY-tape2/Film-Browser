@@ -5,7 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import Movies from "../components/ui/Movies";
 import axios from "axios";
 
-const MovieInfo = () => {
+const MovieInfo = ({addToWatchlist, watchlist}) => {
     const [movie, setMovie] = useState([]);
 
     // Get id of the current page.
@@ -17,15 +17,24 @@ const MovieInfo = () => {
             await axios.get(`http://www.omdbapi.com/?apikey=5a06fc1&i=${id}`)
         );
 
-        setMovie(dataset.data.Search);
+        setMovie(dataset.data);
         // console.log(dataset)
     }
 
     useEffect(() => {
         fetchMoviesById()
-    }, [])
+    }, [id])
 
-    console.log(movie)
+    // Function that add movie to watchlist.
+    function addMovieToWatchlist(movie) {
+        addToWatchlist(movie)
+    }
+
+    function movieExistOnCart() {
+        return watchlist.find(mov => mov.imdbID === id);
+    }
+
+    // console.log(movie)
 
     return (
         <div id="movieinfo__body">
@@ -44,38 +53,45 @@ const MovieInfo = () => {
                         <div className="movieinfo__selected">
 
                             {/* Poster of the movie. */}
-                            {/* <figure className="movieinfo__selected--figure">
+                            <figure className="movieinfo__selected--figure">
                                 <img src={movie.Poster} alt="" className="movieinfo__selected--img" />
-                            </figure> */}
+                            </figure>
                             
                             <div className="movieinfo__selected--description">
                                 
                                 {/* Movie title. */}
                                 <h2 className="movieinfo__selected--title">
-                                    {/* {book.title} */}Batman
+                                   {movie.Title}
                                 </h2>
                                 
                                 {/* Movie description. */}
-                                <div className="book__summary">
-                                    <h3 className="book__summary--title">
-                                        Summary
+                                <div className="movieinfo__summary">
+                                    <h3 className="movieinfo__summary--title">
+                                        <span className="blue">Description</span>
                                     </h3>
-                                    <p className="book__summary--para">
-                                        Blah blah
+                                    <p className="movieinfo__summary--para">
+                                        {movie.Plot}
+                                    </p>
+                                    <p className="movieinfo__summary--para">
+                                        <span className="blue">IMDB Rating</span>: {movie.imdbRating}
+                                    </p>
+                                    <p className="movieinfo__summary--para">
+                                        <span className="blue">Type</span>: {movie.Type}
+                                    </p>
+                                    <p className="movieinfo__summary--para">
+                                        <span className="blue">Runtime</span>: {movie.Runtime}
                                     </p>
                                 </div>
 
                                 {/* Button that adds the movie to watchlist or remove it from. */}
-
-                                <button className="btn">Add to Watchlist</button>
-                                {/* {
-                                    bookExistOnCart() ? (
-                                        <Link to={`/`} className='book__link'>
-                                            <button className="btn">Checkout</button>
+                                {
+                                    movieExistOnCart() ? (
+                                        <Link to={`/watchlist`} className='movieinfo__link'>
+                                            <button className="btn">Proceed to Watch</button>
                                         </Link>
                                     )
-                                    : <button className="btn" onClick={() => addBookToCart(book)}>Add to cart</button>
-                                } */}
+                                    : <button className="btn" onClick={() => addMovieToWatchlist(movie)}>Add to Watchlist</button>
+                                }
                             </div>
                         </div>
                     </div>

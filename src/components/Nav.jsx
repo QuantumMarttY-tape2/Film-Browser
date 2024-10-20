@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import WebLogo from "../assets/map-of-mathematics.jpeg"
 
-const Nav = () => {
+const Nav = ({ numberOfItems }) => {
     return(
         <nav>
             <div className="nav__container">
@@ -24,6 +24,9 @@ const Nav = () => {
                         <Link to="/watchlist" className='nav__link'>
                             Watchlist
                         </Link>
+                        {
+                            numberOfItems > 0 && <span className='watchlist__length'>{numberOfItems}</span>
+                        }
                     </li>
                 </ul>
             </div>

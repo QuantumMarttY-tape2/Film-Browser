@@ -336,6 +336,7 @@ Featured
   overflow: hidden;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .movie__title {
@@ -486,6 +487,14 @@ select {
   }
 }
 
+.nothing__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  flex-direction: column;
+}
+
 /* 
 
 Movie Information Pages
@@ -516,6 +525,18 @@ Movie Information Pages
   width: 50%;
 }
 
+.movieinfo__summary {
+  margin-bottom: 16px;
+}
+
+.movieinfo__selected--title {
+  margin-bottom: 8px
+}
+
+.movieinfo__summary--para {
+  margin-bottom: 16px;
+}
+
 /* 
 
 Watchlist
@@ -531,6 +552,7 @@ Watchlist
 }
 
 .watchlist__item {
+  width: 100%;
   margin: 24px;
   display: flex;
   padding-right: 8px;
@@ -564,14 +586,20 @@ Watchlist
   width: 60px;
 }
 
+.watchlist__body {
+  display: flex;
+  align-items: center;
+
+}
+
 .watchlist__poster--img {
   width: 100%;
   max-width: 90px;
   max-height: 128px;
 }
 
-
 .watchlist__poster--info {
+  width: 55%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -596,7 +624,34 @@ Watchlist
 }
 
 .watchlist__buttons {
+  align-items: center;
+  justify-content: center;
   display: flex;
+}
+
+.watchlist__length {
+  background-color: red;
+  color: white;
+  width: 18px;
+  height: 18px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  pointer-events: none;
+}
+
+.watch__button {
+  height: 100px;
+  width: 100px;
+}
+.watch__icon {
+  height: 50px;
+  width: 50px;
 }
 
 .total {
@@ -627,14 +682,14 @@ Watchlist
   font-weight: bold;
 }
 
-.cart__empty {
+.watchlist__empty {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.cart__empty--img {
+.watchlist__empty--img {
   padding: 40px;
   max-width: 400px;
 }
