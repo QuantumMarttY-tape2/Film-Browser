@@ -9,12 +9,15 @@ import blackhole from "../assets/blackhole.jpeg"
 const Catalog = () => {
     const [films, setFilms] = useState([]);
     const [loading, setLoading] = useState();
-    const [movieName, setMovieName] = useState([]);
-    const [searchKey, setSearchKey] = useState([]);
+    const [movieName, setMovieName] = useState("");
+    const [searchKey, setSearchKey] = useState("");
 
     // The search function that gives particular actions "search" properties.
     function onSearch() {
-        fetchMovies(movieName);
+        // Checks whether the input is empty.
+        if (movieName.trim() !== "") {
+            fetchMovies(movieName);
+        }
     }
 
     // Fetch movies from database. Put a loading state while the webpage is pulling results.
@@ -25,6 +28,7 @@ const Catalog = () => {
         // If there are result from search, process search result.
         if (searchResult.Response !== "False") {
             setFilms(searchResult.data.Search);
+            setSearchKey(nameKey);
         }
         // If there are not, load a image to suggest no result.
         else {
@@ -35,23 +39,18 @@ const Catalog = () => {
 
     // Movie filter.
     function filterMovies(filter) {
+        const sortedFilms = [...films];
         if (filter === "MOST_RECENT") {
-            setFilms(
-            films.slice().sort((a, b) => 
-                // The "||0" part is to make sure that the "Year" element exists in "films".
-                (+a.Year.slice(0,4) || 0) - (+b.Year.slice(0,4) || 0)))
+            sortedFilms.sort((a, b) => 
+            // The "||0" part is to make sure that the "Year" element exists in "films".
+            (+a.Year.slice(0,4) || 0) - (+b.Year.slice(0,4) || 0))
         }
         else if (filter === "OLDEST") {
-            setFilms(
-            films.slice().sort((b, a) => 
-                (+b.Year.slice(0,4) || 0) - (+a.Year.slice(0,4) || 0)))
+            sortedFilms.sort((a, b) => 
+            (+b.Year.slice(0,4) || 0) - (+a.Year.slice(0,4) || 0))
         }
+        setFilms(sortedFilms);
     }
-
-    // Show effects.
-    useEffect(() => {
-        fetchMovies();
-    }, [])
 
     return (
         <>
@@ -93,7 +92,6 @@ const Catalog = () => {
                                 </div>
                             }
                             
-
                             {/* Loading screen then show search results. */}
                             <div className="movies">
                                 {
