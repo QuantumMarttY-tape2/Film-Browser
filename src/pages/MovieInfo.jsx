@@ -98,22 +98,22 @@ const MovieInfo = ({addToWatchlist, watchlist}) => {
                 </div>
 
                 {/* Recommendation section. */}
-                <div className="movieinfo__container">
+                {/* <div className="movieinfo__container">
                     <div className="row">
                         <div className="book__selected--top">
                             <h2 className="book__selected--title--top">
                                 Recommended movieinfo
                             </h2>
                         </div>
-                        <div className="movieinfo">
+                        <div className="movieinfo"> */}
                             {/* {books
                                 .filter(book => book.rating === 5 && +book.id !== +id)
                                 .slice(0,4)
                                 .map(book => <Book book={book} key={book.id} />)
                             } */}
-                        </div>
+                        {/* </div>
                     </div>
-                </div>
+                </div> */}
             </main>
         </div>
     );
