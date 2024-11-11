@@ -14,7 +14,7 @@ const MovieInfo = ({addToWatchlist, watchlist}) => {
     // Import the movie information from the database.
     async function fetchMoviesById() {
         const dataset = (
-            await axios.get(`http://www.omdbapi.com/?apikey=5a06fc1&i=${id}`)
+            await axios.get(`https://www.omdbapi.com/?apikey=5a06fc1&i=${id}`)
         );
 
         setMovie(dataset.data);
