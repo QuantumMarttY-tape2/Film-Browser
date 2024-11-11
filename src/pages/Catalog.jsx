@@ -23,7 +23,7 @@ const Catalog = () => {
     // Fetch movies from database. Put a loading state while the webpage is pulling results.
     async function fetchMovies(nameKey) {
         setLoading(true);
-        const searchResult = await axios.get(`http://www.omdbapi.com/?apikey=5a06fc1&s=${nameKey}`)
+        const searchResult = await axios.get(`https://www.omdbapi.com/?apikey=5a06fc1&s=${nameKey}`)
 
         // If there are result from search, process search result.
         if (searchResult.Response !== "False") {
