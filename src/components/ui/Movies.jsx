@@ -10,7 +10,7 @@ const Movies = ({ nameKey, yearKey, movieId }) => {
     // If the movie ID is present, we search using movie ID.
     async function fetchMoviesById() {
         const dataset = (
-            await axios.get(`http://www.omdbapi.com/?apikey=5a06fc1&i=${movieId}`)
+            await axios.get(`https://www.omdbapi.com/?apikey=5a06fc1&i=${movieId}`)
         );
 
         setMovie(dataset.data.Search);
@@ -19,7 +19,7 @@ const Movies = ({ nameKey, yearKey, movieId }) => {
     // Otherwise, search movie by its title.
     async function fetchMoviesByName() {
         const dataset = (
-            await axios.get(`http://www.omdbapi.com/?apikey=5a06fc1&s=${nameKey}&y=${yearKey}`)
+            await axios.get(`https://www.omdbapi.com/?apikey=5a06fc1&s=${nameKey}&y=${yearKey}`)
         );
         
         setMovie(dataset.data.Search);
